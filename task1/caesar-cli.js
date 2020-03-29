@@ -26,7 +26,7 @@ const caesarCli = async () => {
     return;
   }
 
-  const transform = through2(function(chunk, enc, callback) {
+  const transform = through2(function (chunk, enc, callback) {
     const transformedText = applyCeaserCipher(
       chunk.toString(),
       shift,
@@ -41,7 +41,11 @@ const caesarCli = async () => {
   const run = (transformFunc) => (readStream, writeStream) =>
     pipeline(readStream, transformFunc, writeStream, (err) => {
       if (err) {
-        console.error(err.message);
+        if (err.code === 'ENOENT') {
+          console.log(`File with path ${input} do not exist.`);
+        } else {
+          console.error(err.message);
+        }
       } else {
         console.log('Cipher is succeeded.');
       }

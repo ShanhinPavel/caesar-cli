@@ -2,7 +2,7 @@
   "name": "caesar-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "caesar-cli.js",
+  "main": "./task1/caesar-cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
